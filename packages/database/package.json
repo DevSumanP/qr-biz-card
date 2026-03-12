@@ -1,0 +1,8 @@
+{
+  "name": "@repo/database",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./index.ts",
+  "dependencies": { "@prisma/client": "^5" },
+  "devDependencies": { "prisma": "^5" }
+}

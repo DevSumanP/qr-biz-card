@@ -1,0 +1,17 @@
+{
+  "name": "qr-biz-card",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "packageManager": "npm@10.2.4",
+  "scripts": {
+    "dev":   "turbo dev",
+    "build": "turbo build",
+    "lint":  "turbo lint",
+    "web":   "turbo dev --filter=web",
+    "cms":   "turbo dev --filter=cms"
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "^5"
+  }
+}

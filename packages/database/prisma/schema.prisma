@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Business {
+  id          String   @id @default(cuid())
+  handle      String   @unique
+  name        String
+  tagline     String?
+  description String?
+  category    String
+  phone       String?
+  email       String?
+  website     String?
+  address     String?
+  city        String?
+  mapUrl      String?
+  logoUrl     String?
+  coverUrl    String?
+  themeColor  String?  @default("#1a1a2e")
+  ownerId     String
+  role        String?  @default("Professional")
+  estYear     String?
+  isVerified  Boolean  @default(false)
+  plan        Plan     @default(FREE)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  socialLinks   SocialLink[]
+  actionLinks   ActionLink[]
+  photos        BusinessPhoto[]
+  products      Product[]
+  scans         QRScan[]
+  businessHours BusinessHours?
+}
+
+model SocialLink {
+  id         String   @id @default(cuid())
+  businessId String
+  platform   String
+  url        String
+  order      Int      @default(0)
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model ActionLink {
+  id         String   @id @default(cuid())
+  businessId String
+  label      String
+  url        String
+  icon       String?
+  order      Int      @default(0)
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model BusinessHours {
+  id         String   @id @default(cuid())
+  businessId String   @unique
+  monday     String?
+  tuesday    String?
+  wednesday  String?
+  thursday   String?
+  friday     String?
+  saturday   String?
+  sunday     String?
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model BusinessPhoto {
+  id         String   @id @default(cuid())
+  businessId String
+  url        String
+  caption    String?
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  businessId  String
+  name        String
+  description String?
+  price       String?
+  imageUrl    String?
+  order       Int      @default(0)
+  isAvailable Boolean  @default(true)
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model QRScan {
+  id         String   @id @default(cuid())
+  businessId String
+  source     String?
+  userAgent  String?
+  referer    String?
+  city       String?
+  country    String?
+  scannedAt  DateTime @default(now())
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+}
+
+model LinkClick {
+  id         String   @id @default(cuid())
+  businessId String
+  linkType   String
+  platform   String
+  clickedAt  DateTime @default(now())
+}
+
+enum Plan { FREE PRO BUSINESS }
+
+model QuoteRequest {
+  id           String      @id @default(cuid())
+  businessName String
+  contactName  String
+  email        String
+  phone        String
+  details      String?
+  status       QuoteStatus @default(PENDING)
+  createdAt    DateTime    @default(now())
+}
+
+enum QuoteStatus {
+  PENDING
+  CONTACTED
+}
