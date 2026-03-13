@@ -1,6 +1,4 @@
-import { textStyle } from '@/lib/styles'
 import type { SocialLink } from './types'
-import Image from 'next/image'
 
 export default function SocialLinks({ links }: { links: SocialLink[] }) {
   if (!links.length) return null

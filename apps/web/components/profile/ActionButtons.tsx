@@ -2,6 +2,7 @@
 import { Instagram, Facebook, Mail, MapPin, Phone, MessageCircle, ArrowUpRight } from 'lucide-react'
 import { textStyle } from '@/lib/styles'
 import type { ActionLink } from './types'
+import Link from 'next/link'
 
 const ICONS: Record<string, React.ElementType> = {
   Instagram, Facebook, Mail, MapPin, Phone, MessageCircle, ArrowUpRight,
@@ -28,7 +29,7 @@ export default function ActionButtons({ links, businessId }: { links: ActionLink
         {links.map((action) => {
           const Icon = ICONS[action.icon ?? ''] ?? MapPin
           return (
-            <a
+            <Link
               key={action.label}
               href={action.url}
               target="_blank"
@@ -53,7 +54,7 @@ export default function ActionButtons({ links, businessId }: { links: ActionLink
                 </span> */}
                 <ArrowUpRight className="w-5 h-5 text-[#7E7E7E] shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
-            </a>
+            </Link>
           )
         })}
 

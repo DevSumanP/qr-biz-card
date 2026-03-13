@@ -1,7 +1,7 @@
 'use client'
 import { Instagram, Facebook, Mail, MapPin, Phone, MessageCircle, ArrowUpRight } from 'lucide-react'
 import { textStyle } from '@/lib/styles'
-import type { ActionLink } from './types'
+import Link from 'next/link';
 
 const ICONS: Record<string, React.ElementType> = {
     Instagram, Facebook, Mail, MapPin, Phone, MessageCircle, ArrowUpRight,
@@ -46,7 +46,7 @@ export default function ContactCard({ links }: { links: ContactLink[] }) {
                 {dummyContacts.map((action) => {
                     const Icon = ICONS[action.icon ?? ''] ?? MapPin
                     return (
-                        <a
+                        <Link
                             key={action.label}
                             href={action.url}
                             target="_blank"
@@ -62,7 +62,7 @@ export default function ContactCard({ links }: { links: ContactLink[] }) {
                             </div>
 
 
-                        </a>
+                        </Link>
                     )
                 })}
 

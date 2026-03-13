@@ -8,7 +8,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
 
   return (
     <div className={`${componentStyle.cardSm} mb-6`}>
-      <h2 className={`${textStyle.smallSemibold} ${colorStyle.textInk} mb-3`}>Products &amp; Services</h2>
+      <h2 className={`${textStyle.bodyMedium} ${colorStyle.textInk} mb-3`}>Products &amp; Services</h2>
       <div className="space-y-3">
         {available.map(product => (
           <div key={product.id} className={`flex items-center gap-3 p-2 ${radiusStyle.card} ${colorStyle.bgSurface}`}>
@@ -19,13 +19,13 @@ export default function ProductGrid({ products }: { products: Product[] }) {
               }
             </div>
             <div className="flex-1 min-w-0">
-              <p className={`${textStyle.smallSemibold} ${colorStyle.textInk} truncate`}>{product.name}</p>
+              <p className={`${textStyle.bodyMedium} ${colorStyle.textInk} truncate`}>{product.name}</p>
               {product.description && (
-                <p className={`${textStyle.micro} ${colorStyle.textMuted} mt-0.5 line-clamp-1`}>{product.description}</p>
+                <p className={`${textStyle.bodyXSmall} ${colorStyle.textMuted} mt-0.5 line-clamp-1`}>{product.description}</p>
               )}
             </div>
             {product.price && (
-              <span className={`${textStyle.smallSemibold} ${colorStyle.textPrimary} flex-shrink-0`}>{product.price}</span>
+              <span className={`${textStyle.bodyMedium} ${colorStyle.textPrimary} flex-shrink-0`}>{product.price}</span>
             )}
           </div>
         ))}

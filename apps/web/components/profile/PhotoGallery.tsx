@@ -11,7 +11,7 @@ export default function PhotoGallery({ photos }: { photos: BusinessPhoto[] }) {
   return (
     <>
       <div className={`${componentStyle.cardSm} mb-6`}>
-        <h2 className={`${textStyle.smallSemibold} ${colorStyle.textInk} mb-3`}>Photos</h2>
+        <h2 className={`${textStyle.bodyMedium} ${colorStyle.textInk} mb-3`}>Photos</h2>
         <div className="grid grid-cols-3 gap-1.5">
           {photos.map(photo => (
             <button key={photo.id} onClick={() => setSelected(photo)}
@@ -35,7 +35,7 @@ export default function PhotoGallery({ photos }: { photos: BusinessPhoto[] }) {
               className={`max-w-sm w-full ${radiusStyle.lg}`}
               style={{ maxHeight:'80vh', objectFit:'contain', boxShadow:'0 20px 60px rgba(0,0,0,0.5)' }} />
             {selected.caption && (
-              <p className={`text-center ${textStyle.small} text-white/70 mt-3`}>{selected.caption}</p>
+              <p className={`text-center ${textStyle.bodySmall} text-white/70 mt-3`}>{selected.caption}</p>
             )}
           </div>
         </div>
